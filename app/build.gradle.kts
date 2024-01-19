@@ -53,4 +53,6 @@ dependencies {
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation ("com.intuit.ssp:ssp-android:1.0.6")
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation ("com.google.android.material:material:1.11.0")
+
 }
