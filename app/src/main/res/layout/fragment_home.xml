@@ -15,10 +15,22 @@
         app:cardCornerRadius="@dimen/_8sdp"/>
 
     <TextView
-        android:id="@+id/tv_government"
+        android:id="@+id/tv_governorate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="164dp"
+        android:hint="@string/government"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewInHomeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
         android:hint="@string/government"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"

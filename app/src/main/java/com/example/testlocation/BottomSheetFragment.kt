@@ -5,15 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testlocation.adapter.AdapterGovernorate
-import com.example.testlocation.adapter.GovernorateData
+import com.example.testlocation.OnGovernorateSelectedListener
 import com.example.testlocation.databinding.FragmentBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentBottomSheetBinding
     private lateinit var adapter :AdapterGovernorate
+    private var governorateSelectedListener: OnGovernorateSelectedListener? = null
     private var dataList: List<String> = mutableListOf()
     val governoratesList = listOf("القاهرة ","الوادي الجديد"
         ,"المنيا","المنوفية","مطروح","كفر الشيخ","قنا","القليوبية",
@@ -32,8 +34,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter = AdapterGovernorate(governoratesList) { selectedGovernorate ->
+            governorateSelectedListener?.onGovernorateSelected(selectedGovernorate)
+            findNavController().navigate(R.id.action_bottom_sheetFragment_to_homeFragment)
+        }
         dataList =governoratesList
-       adapter = AdapterGovernorate(governoratesList)
         binding.recyclerViewGovernorate.adapter = adapter
         binding.recyclerViewGovernorate.layoutManager = LinearLayoutManager(context)
         setUpSearchView()
@@ -65,4 +70,8 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         }
         adapter.updateData(filteredList)
     }
+    fun setOnGovernorateSelectedListener(listener: OnGovernorateSelectedListener) {
+        governorateSelectedListener = listener
+    }
+
 }

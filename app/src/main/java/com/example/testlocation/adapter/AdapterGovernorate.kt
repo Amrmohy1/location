@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.testlocation.databinding.ItemGovernorateBinding
 
 
-class AdapterGovernorate(private var governorates: List<String>)
+class AdapterGovernorate(private var governorates: List<String>,private val onItemSelected: (String) -> Unit)
     : RecyclerView.Adapter<AdapterGovernorate.ViewHolder>() {
 
     class ViewHolder(  private val binding: ItemGovernorateBinding)
@@ -30,6 +30,9 @@ class AdapterGovernorate(private var governorates: List<String>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = governorates[position]
         holder.bind(currentItem)
+        holder.itemView.setOnClickListener {
+            onItemSelected(currentItem)
+        }
     }
     fun updateData(newData: List<String>) {
         governorates = newData
